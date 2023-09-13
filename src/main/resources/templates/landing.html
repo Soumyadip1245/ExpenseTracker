@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link th:href="@{/main.css}" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="navbar bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"> Expense Tracker (Soumyadip Das 20CSU214) </a>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Search</h2>
+                <form th:action="@{'/getId'}" id="searchForm">
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="searchInput"
+                        placeholder="Search Id"
+                        name="id"
+                    />
+                    <button class="btn btn-primary mt-2" type="submit">
+                        Search
+                    </button>
+                </form>
+                
+                
+
+            </div>
+            <div class="col-md-8">
+              <h1>Insert Expense</h1>
+                <form th:action="@{/createExpense}">
+                    <div class="mb-3">
+                        <label for="date" class="form-label">Date</label>
+                        <input type="date" class="form-control" id="date" name="date" />
+                      </div>
+                      <div class="mb-3">
+                        <label for="expense" class="form-label">Expense</label>
+                        <input
+                          type="range"
+                          class="form-range"
+                          id="expense"
+                          name="expense"
+                          min="0"
+                          max="1000000"
+                          step="1"
+                        />
+                        <span id="expenseValue">0</span>
+                      </div>
+                      <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" />
+                      </div>
+                      <div class="mb-3">
+                        <label for="note" class="form-label">Note</label>
+                        <textarea
+                          class="form-control"
+                          id="note"
+                          name="note"
+                          rows="3"
+                        ></textarea>
+                      </div>
+                      <div class="mb-3">
+                        <label for="url" class="form-label">URL</label>
+                        <input type="text" class="form-control" id="url" name="url" />
+                      </div>
+                      <button type="submit" class="btn btn-primary">Add Expense</button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4">
+        <h1>All Expenses</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Date</th>
+                  <th>Expense</th>
+                  <th>Name</th>
+                  <th>Note</th>
+                  <th>URL</th>
+                  <th>Delete</th>
+                  <th>Edit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="expense : ${expensedata}">
+                  <td th:text="${expense._id}"></td>
+                  <td th:text="${expense.date}"></td>
+                  <td th:text="${expense.expense}"></td>
+                  <td th:text="${expense.name}"></td>
+                  <td th:text="${expense.note}"></td>
+                  <td th:text="${expense.url}"></td>
+                  <td>
+                    <a
+                      th:href="@{'/deleteExpenses/' + ${expense._id}}"
+                      class="btn btn-danger"
+                      >Delete</a
+                    >
+                  </td>
+                  <td>
+                    <a
+                      th:href="@{'/editExpense/' + ${expense._id}}"
+                      class="btn btn-danger"
+                      >Edit</a
+                    >
+                  </td>
+                </tr>
+              </tbody>
+        </table>
+    </div>
+   
+    <script>
+      const expenseSlider = document.getElementById("expense");
+      const expenseValue = document.getElementById("expenseValue");
+
+      // Add an event listener to the slider
+      expenseSlider.addEventListener("input", function () {
+        expenseValue.textContent = expenseSlider.value;
+      });
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

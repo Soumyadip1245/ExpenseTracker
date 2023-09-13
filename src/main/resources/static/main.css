@@ -1,0 +1,15 @@
+
+:root {
+    --bs-primary: #7532f8; 
+}
+.bg-primary {
+    background-color: var(--bs-primary) !important;
+    color: white !important;
+}
+.btn-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+.navbar-brand{
+    color: white !important;
+}
