@@ -3,6 +3,7 @@
 - Hibernate
 - MySQL
 - Thymeleaf
+`Repository doesn't contains pom.xml and application.properties file`
 # __Fetch Data From MySQL__
 
 ![image](https://github.com/Soumyadip1245/ExpenseTracker/assets/97156552/1a89f11d-1eba-425e-8d56-79ac125b0aed)
