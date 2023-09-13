@@ -1,8 +1,9 @@
-##  __ExpenseTracker [Soumyadip Das (20csu214)]__
+# _Expense Tracker [Soumyadip das (20csu214)]_
 - Spring Boot
 - Hibernate
 - MySQL
 - Thymeleaf
+  
 `Repository doesn't contains pom.xml and application.properties file`
 # __Fetch Data From MySQL__
 
